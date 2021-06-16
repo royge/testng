@@ -41,8 +41,8 @@ func StoreClient(t *testing.T, projectID, collection string) (
 			t.Logf("[INFO] done deleting document `%v` ...", doc.ID)
 		}
 
-		client.Close()
 		t.Logf("[INFO] done cleaning up `%v` firestore collection", collection)
+		client.Close()
 	})
 
 	return client
