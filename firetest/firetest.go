@@ -26,14 +26,13 @@ func StoreClient(t *testing.T, projectID, collection string) (
 		iter := client.Collection(collection).DocumentRefs(ctx)
 		for {
 			doc, err := iter.Next()
-			t.Logf("[INFO] deleting document `%v` ...", doc.ID)
-
 			if err == iterator.Done {
 				break
 			}
 			if err != nil {
 				t.Fatalf("error iterating to next document: %v", err)
 			}
+			t.Logf("[INFO] deleting document `%v` ...", doc.ID)
 			_, err = doc.Delete(ctx)
 			if err != nil {
 				t.Fatalf("error deleting document: %v", err)
